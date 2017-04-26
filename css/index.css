@@ -1,0 +1,47 @@
+*{
+	margin:0;
+	padding:0;
+}
+ul,li{
+	list-style: none;
+}
+.head_color{
+	background: #2e98ee;
+	color: #fff;
+	height: 120px;
+}
+.mui-bar-nav~.mui-content{
+	padding-top: 120px;
+}
+.mui_title{
+	color: #fff;
+	height: 120px;
+	line-height: 120px;
+	font-size: 52px;
+}
+.top_nav{
+	background:transparent;
+	float: right;
+}
+.top_nav li a{
+	float: right;
+}
+.list1 li img{
+	width: 500px;
+	height: 200px;
+}
+.lunbo img{
+	width:100%;
+	height: 320px;
+}
+.mui_srarch{
+	background: #e7ecef;
+	padding:15px;
+}
+.mui_srarch div{
+	height: 100px;
+	background: #fff;
+	border:1px solid #c3c7c8;
+	margin:0;
+	font-size:18px;
+}

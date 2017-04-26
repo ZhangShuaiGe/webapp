@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta id="viewport" name="viewport" content="width=1080,user-scalable=no">
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <script src="js/shipei.js" type="text/javascript" charset="utf-8"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+   	<link rel="stylesheet" type="text/css" href="css/index.css"/>
+   	<script src="js/all.js"></script>
+   	<script type="text/javascript">
+   		mui.init();
+   		//获得slider插件对象
+   		mui.ready(function(){
+			var gallery = mui('.mui-slider');
+				gallery.slider({
+				interval:1000,
+			});
+   		})
+   	</script>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav head_color">
+		<h1 class="mui-title mui_title">学习</h1>
+	</header>
+	<div class="mui-content">
+		<!--轮播-->
+		<div class="mui-slider lunbo">
+			<div class="mui-slider-group mui-slider-loop">
+				<!--支持循环，需要重复图片节点-->
+				<div class="mui-slider-item mui-slider-item-duplicate">
+					<a href="#"><img src="http://image.vyanke.com/study/course/58f9e45343b50.jpeg" /></a>
+				</div>
+				<div class="mui-slider-item">
+					<a href="#"><img src="imases/img.png" /></a>
+				</div>
+				<div class="mui-slider-item">
+					<a href="#"><img src="imases/img.png" /></a>
+				</div>
+				<div class="mui-slider-item">
+					<a href="#"><img src="imases/img.png" /></a>
+				</div>
+				<div class="mui-slider-item">
+					<a href="#"><img src="http://image.vyanke.com/study/course/58f9e45343b50.jpeg" /></a>
+				</div>
+				<!--支持循环，需要重复图片节点-->
+				<div class="mui-slider-item mui-slider-item-duplicate">
+					<a href="#"><img src="imases/img.png" /></a>
+				</div>
+			</div>
+			<div class="mui-slider-indicator">
+				<div class="mui-indicator mui-active"></div>
+				<div class="mui-indicator"></div>
+				<div class="mui-indicator"></div>
+				<div class="mui-indicator"></div>
+			</div>
+		</div>
+		<!--/轮播-->
+		<div class="mui_srarch">
+			<div>
+				<span class="mui-icon mui-icon-search"></span>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
