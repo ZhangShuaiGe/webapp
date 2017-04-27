@@ -38,10 +38,42 @@ ul,li{
 	background: #e7ecef;
 	padding:15px;
 }
+.mui_srarch a{
+	color: #000;
+}
 .mui_srarch div{
 	height: 100px;
 	background: #fff;
 	border:1px solid #c3c7c8;
 	margin:0;
-	font-size:18px;
+	font-size:48px;
+	line-height: 100px;
+	text-align: center;
+	font-size: 48px;
+}
+.mui-icon-search:before {
+	font-size: 48px;
+	content: '\e466搜索课程套餐';
+}
+.nav_list{
+	display: flex;
+	justify-content: space-around;
+	background: #fff;
+	height: 180px;
+	align-items:center;
+}
+.nav_list li{
+	text-align: center;
+	font-size: 36px;
+}
+.nav_list li a img{
+	margin-bottom: 20px;
+	vertical-align: middle;
+}
+.nav_list li a{
+	color:#000;
+}
+.mui-slider-indicator div{
+	width:20px!important;
+	height:20px!important;
 }
