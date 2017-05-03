@@ -5,47 +5,34 @@
 		<title></title>
 <!--		<meta name="viewport" content="width=1080,user-scalable=no" />-->
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<link href="css/mui.min.css" rel="stylesheet" />
+		 <!-- jq -->
+		<script src="http://libs.baidu.com/jquery/2.1.1/jquery.min.js"></script>
+		<!-- mui js-->
 		<script src="js/mui.min.js"></script>
+		 <!-- 适配js -->
+	<!-- 	<script src="js/shipei.js" type="text/javascript" charset="utf-8"></script> -->
+		 <!-- mui css -->
+		<link href="css/mui.min.css" rel="stylesheet"/>
 		<script type="text/javascript">
 			mui.init();
 			mui.plusReady(function(){
-				mui(".serch_btn").on("tap","span",function(){
-					alert("进入");
-					var $val = document.getElementById("input").value;
-					var data={keyword:$val}; 
-					alert(JSON.stringify(data));
-					var $val = document.getElementById("input").value;
-					var xhr = new plus.net.XMLHttpRequest();
-					xhr.onreadystatechange = function () {
-					    switch ( xhr.readyState ) {
-					        case 0:
-					            alert( "xhr请求已初始化" );
-					        break;
-					        case 1:
-					            alert( "xhr请求已打开" );
-					        break;
-					        case 2:
-					            alert( "xhr请求已发送" );
-					        break;
-					        case 3:
-					            alert( "xhr请求已响应");
-					            break;
-					        case 4:
-					            if ( xhr.status == 200 ) {
-					                alert( "xhr请求成功："+xhr.responseText );
-					            } else {
-					                alert( "xhr请求失败："+xhr.readyState );
-					            }
-					            break;
-					        default :
-					            break;
-					    }
-					}
-					xhr.open( "POST", "http://app.hskaoyan.com/v2/study/search" );
-					// 发送HTTP请求
-					xhr.setRequestHeader('Content-Type','application/json');
-					xhr.send(JSON.stringify(data));
+				var btn = document.getElementById("serch");
+				btn.addEventListener("tap",function(){
+					var val = document.getElementById("input").value;
+					mui.ajax('http://hoa.hcoder.net/index.php?user=hcoder&pwd=hcoder&m=list1&page=1',{
+						
+						dataType:'text',//服务器返回json格式数据
+						type:'post',//HTTP请求类型
+						timeout:10000,//超时时间设置为10秒；	              
+						success:function(data){
+							alert(data);
+							
+						},
+						error:function(xhr,type,errorThrown){
+							//异常处理；
+							alert("进入错误9");
+						}
+					});
 				})
 			})
 		</script>
@@ -53,6 +40,16 @@
 			.serch_btn{
 				margin:0 auto;
 				display: block;
+			}
+			#text{
+				-webkit-user-select: text;
+				border:1px solid red;
+			}
+			#text td{
+				border:1px solid #ccc;
+			}
+			.serch_box{
+				margin:10px;
 			}
 		</style>
 	</head>
@@ -62,12 +59,9 @@
 		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 		    <h1 class="mui-title">搜索课程</h1>
 		</header>
-		<div>
-
-		</div>
-		<div class="mui-content">
+		<div class="mui-content serch_box">
 			<input type="text" placeholder="请输入关键字" id="input"/>
-			<div class="mui-btn mui-btn-primary serch_btn">
+			<div id="serch" class="mui-btn mui-btn-primary serch_btn">
 					<span>搜索</span>
 			</div>
 		</div>

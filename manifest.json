@@ -198,7 +198,33 @@
 					"js/mui.min.js",
 					"fonts/mui.ttf",
 					"css/mui.min.css",
-					"js/shipei.js"
+					"js/shipei.js",
+					"images/img.png",
+					"images/bg.png",
+					"js/all.js",
+					"test.html",
+					"serch.html",
+					"shua.html",
+					"xxx.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"serch.html": {
+				"resources": [
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"index.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"shua.html": {
+				"resources": [
+					"index.html",
+					"js/all.js",
+					"shua2.html"
 				],
 				"refer": [],
 				"priority": 0

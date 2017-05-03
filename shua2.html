@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+	</head>
+
+	<body>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			function add(){
+	            mui.ajax('http://hoa.hcoder.net/index.php?user=hcoder&pwd=hcoder&m=list1&page=1',{
+	                dataType:'text',//服务器返回json格式数据
+	                type:'get',//HTTP请求类型
+	                timeout:10000,//超时时间设置为10秒；                 
+	                success:function(data){
+	                    if(data == 'null'){return false;}
+	                    var arr  = data.split('--hcSplitor--'), html = '';
+	                    for(var i = 0; i < arr.length; i++){
+	                        html += '<li><span style="color:red;margin-right:10px">'+i+'</span>'+arr[i]+'</li>';
+	                    }
+	                    $('#ul_list').append(html);
+	                     //注意，加载完新数据后，必须执行如下代码，注意：若为ajax请求，则需将如下代码放置在处理完ajax响应数据之后
+	                    mui('#refreshContainer').pullRefresh().endPulldownToRefresh()
+	                    
+	                },
+	                error:function(xhr,type,errorThrown){
+	                	alert("请求错误");
+	                    //异常处理；
+	                    console.log(type);
+	                }
+            	});
+			}
+			mui.init({
+				pullRefresh: {
+					container: "#refreshContainer", //下拉刷新容器标识，querySelector能定位的css选择器均可，比如：id、.class等
+					down: {
+						height: 50, //可选,默认50.触发下拉刷新拖动距离,
+						auto: false, //可选,默认false.自动下拉刷新一次
+						contentdown: "下拉可以刷新", //可选，在下拉可刷新状态时，下拉刷新控件上显示的标题内容
+						contentover: "释放立即刷新", //可选，在释放可刷新状态时，下拉刷新控件上显示的标题内容
+						contentrefresh: "正在刷新...", //可选，正在刷新状态时，下拉刷新控件上显示的标题内容
+						callback: add //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
+					}
+				}
+			});
+		</script>
+		<div class="mui-content">
+			<div id="refreshContainer" class="mui-content mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<!--数据列表-->
+					<ul class="mui-table-view mui-table-view-chevron" id="ul_list">
+						<li>1111</li>
+						<li>1111</li>
+						<li>1111</li>
+						<li>1111</li>
+						<li>1111</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>

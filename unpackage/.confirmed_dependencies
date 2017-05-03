@@ -5,7 +5,42 @@
 			"js/mui.min.js",
 			"fonts/mui.ttf",
 			"css/mui.min.css",
-			"js/shipei.js"
+			"js/shipei.js",
+			"images/img.png",
+			"images/bg.png",
+			"js/all.js",
+			"test.html",
+			"serch.html",
+			"shua.html",
+			"xxx.html"
+		],
+		"refer": [
+			"test.html",
+			"serch.html",
+			"shua.html",
+			"xxx.html"
+		]
+	},
+	"serch.html": {
+		"resources": [
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"index.html"
+		],
+		"refer": [
+			"index.html"
+		]
+	},
+	"shua.html": {
+		"resources": [
+			"index.html",
+			"js/all.js",
+			"shua2.html"
+		],
+		"refer": [
+			"index.html",
+			"shua2.html"
 		]
 	}
 }
