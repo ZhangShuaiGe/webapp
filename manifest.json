@@ -187,7 +187,7 @@
 					"xhdpi": "", /*720P高分屏启动图片，分辨率：720x1242*/
 					"xxhdpi": ""
 				}
-			}
+			},"debug":true
 		}
 	},
 	"dependencies": {
@@ -205,7 +205,8 @@
 					"test.html",
 					"serch.html",
 					"shua.html",
-					"xxx.html"
+					"xxx.html",
+					"js/mui.js"
 				],
 				"refer": [],
 				"priority": 0
@@ -215,7 +216,9 @@
 					"js/mui.min.js",
 					"fonts/mui.ttf",
 					"css/mui.min.css",
-					"index.html"
+					"index.html",
+					"images/searh_bg.jpg",
+					"js/mui.js"
 				],
 				"refer": [],
 				"priority": 0
@@ -232,7 +235,6 @@
 		},
 		"idle": {
 			"resources": [
-				"js/mui.js",
 				"css/mui.css"
 			]
 		}

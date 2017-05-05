@@ -2,25 +2,55 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title></title>
-<!--		<meta name="viewport" content="width=1080,user-scalable=no" />-->
+		<title>搜索百科</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		 <!-- jq -->
-		<script src="http://libs.baidu.com/jquery/2.1.1/jquery.min.js"></script>
 		<!-- mui js-->
-		<script src="js/mui.min.js"></script>
-		 <!-- 适配js -->
-	<!-- 	<script src="js/shipei.js" type="text/javascript" charset="utf-8"></script> -->
+		<script src="js/mui.js"></script>
+	 	<!-- jq -->
+		<script src="http://libs.baidu.com/jquery/2.1.1/jquery.min.js"></script>
 		 <!-- mui css -->
 		<link href="css/mui.min.css" rel="stylesheet"/>
 		<script type="text/javascript">
 			mui.init();
 			mui.plusReady(function(){
-				var btn = document.getElementById("serch");
+				var serch = document.getElementById("serch");
+				//初始化一个数组 用来 读取 本地 搜索记录
+				var arr = [];
+				function search(){
+					//读取本地数据
+					var $storage = window.localStorage.getItem("data");
+					//有数据的情况下
+					if($storage != null){
+						//数组化本地数据
+						var g = JSON.parse($storage);
+				        for(var i = 0 ; i < g.length ; i++){
+				        	// 初始化 预防 重复叠加
+				        	arr = [];
+	//将本地数据放入数组,如果输入内容会更新 数组 ，然后重新  将数组 存入 本地数据，更新本地数据		
+				            arr.push(g[i]);
+				            
+							var $dom = [
+									'<li>',
+									'	<img src="images/searh_bg.jpg" alt="" />',
+									'	<span>'+g[i]+'</span>',
+									'	<span class="mui-icon mui-icon-trash remove"></span>',
+									'</li>'
+							].join("");
+				            $(".search_list").append($dom);
+				        }
+					}
+				}
+				// 搜索记录列表展示
+				search();
 //				点击搜索
-				btn.addEventListener("tap",function(){
-					$("#con_box").html("");
+				serch.addEventListener("tap",function(){
 					var val = document.getElementById("input").value;
+//					更新数组
+					arr.push(val);
+//					将新数组 存入 本地   字符串化 数组
+					window.localStorage.setItem("data",JSON.stringify(arr));
+					// 搜索记录列表展示
+					search();
 					mui.ajax('http://baike.baidu.com/api/openapi/BaikeLemmaCardApi?scope=103&format=json&appid=379020&bk_key='+val+'&bk_length=600',{
 						dataType:'json',//服务器返回json格式数据
 						type:'get',//HTTP请求类型
@@ -30,14 +60,19 @@
 								$("#con_box").append("抱歉~没有查询到相关内容");
 								return false;
 							}
+//							成功后清空 避免累计请求
+							$("#con_box").html("");
+							
 							$("#con_box").append("<p>查询：<span style='color:red'>"+data["key"]+"</span></p>");
 							$("#con_box").append("<p>简介：<span style='color:red'>"+data["abstract"]+"</span></p>");
-							$("#con_box").append("<p id='img_box'>简介：<img src='"+data["image"]+"'></span></p>");
+							$("#con_box").append("<p id='img_box'>图片：<img src='"+data["image"]+"'></span></p>");
 							$("#con_box").append("<p>声明：<span style='color:red'>"+data["copyrights"]+"</span></p>");
 						},
 						error:function(xhr,type,errorThrown){
 							//异常处理；
-							alert("进入错误");
+							alert("请求错误");
+							console.log(type);
+							
 						}
 					});
 				})
@@ -46,15 +81,28 @@
 				})
 				$("#input").blur(function(){
 					$("#close").css("display","none");
-				})
-//				remove  点击删除
+				});
+//				remove  点击清空输入框
 				document.getElementById("close").addEventListener("tap",function(){
 					$("#input").val("");
 					$("#close").css("display","none");
+				});
+				// 清空搜索历史
+				document.getElementById("claer").addEventListener("tap",function(){
+					alert(1);
+					$(".search_list").html("");
+					window.localStorage.clear();
 				})
 			})
 		</script>
 		<style type="text/css">
+			*{
+				margin:0;
+				padding: 0;
+			}
+			ul,li{
+				list-style: none;
+			}
 			.serch_btn{
 				margin:0 auto;
 				display: block;
@@ -77,14 +125,65 @@
 				font-size: 30px;
 				display: none;
 			}
+			.guide{
+				padding:0 15px;
+			}
+			.guide h3{
+				font-size: 16px;
+				margin:20px 0;
+			}
+			.guide a{
+				font-size: 14px;
+				background: #fff;
+				color:#000;
+				padding:10px;
+				border:1px solid #ccc;
+				border-radius: 5px;
+				display: inline-block;
+			}
+			.history h3{
+				font-size: 16px;
+				margin: 15px;
+			}
+			.history li{
+				border-top: 1px solid #ccc;
+				border-bottom: 0px solid #ccc;
+				background: #fff;
+				height: 40px;
+				line-height: 40px;
+				padding: 0 15px;
+			}
+			.history li:last-child{
+				border-bottom: 1px solid #ccc;
+			}
+			.history li img{
+				vertical-align: middle;
+				margin-right: 24px;
+				float: left;
+				margin-top: 6px;
+			}
+			.history .remove{
+				float: right;
+				margin-top: 8px;
+			}
+			.clear{
+				background: #fff;
+				height: 40px;
+				display: block;
+				line-height: 40px;
+				text-align: center;
+				font-size: 12px;
+			}
 		</style>
 	</head>
 
 	<body>
+		
 		<header class="mui-bar mui-bar-nav">
 		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 		    <h1 class="mui-title">搜索百科</h1>
 		</header>
+		
 		<div class="mui-content serch_box">
 			<input type="text" placeholder="请输入关键字" id="input"/>
 			<div id="serch" class="mui-btn mui-btn-primary serch_btn">
@@ -92,6 +191,24 @@
 			</div>
 			<a id="close" href="javascript:;">x</a>
 		</div>
+		
+		<div class="guide">
+			<h3>大家都在搜</h3>
+			<a href="#">数学</a>
+			<a href="#">北京</a>
+			<a href="#">史泰龙</a>
+			<a href="#">皮皮虾</a>
+		</div>
+		
+		<div class="history">
+			<h3>搜索历史</h3>
+			<ul class="search_list">
+
+			</ul>
+			<a href="javascript:;" class="clear" id="claer">清空搜索历史</a>
+		</div>
+		
+		<!--结果-->
 		<div id="con_box">
 			
 		</div>
