@@ -17,6 +17,10 @@
 				//初始化一个数组 用来 读取 本地 搜索记录
 				var arr = [];
 				function search(){
+		        	// 初始化 预防 重复叠加
+		        	arr = [];
+					//清空搜索列表  避免 重复添加
+					$(".search_list").html("");
 					//读取本地数据
 					var $storage = window.localStorage.getItem("data");
 					//有数据的情况下
@@ -24,8 +28,6 @@
 						//数组化本地数据
 						var g = JSON.parse($storage);
 				        for(var i = 0 ; i < g.length ; i++){
-				        	// 初始化 预防 重复叠加
-				        	arr = [];
 	//将本地数据放入数组,如果输入内容会更新 数组 ，然后重新  将数组 存入 本地数据，更新本地数据		
 				            arr.push(g[i]);
 				            
@@ -44,6 +46,8 @@
 				search();
 //				点击搜索
 				serch.addEventListener("tap",function(){
+//					将搜索历史 和 推荐词 隐藏
+					$(".guide,.history").hide();
 					var val = document.getElementById("input").value;
 //					更新数组
 					arr.push(val);
@@ -77,21 +81,37 @@
 					});
 				})
 				$("#input").focus(function(){
-					$("#close").css("display","inline-block");
+					$("#close").show();
 				})
-				$("#input").blur(function(){
-					$("#close").css("display","none");
-				});
-//				remove  点击清空输入框
+				$("#input").on("input propertychange",function(){
+					$("#close").show();
+//					输入框为空
+					if($("#input").val() == ""){
+						$("#close").hide();
+						$("#con_box").html("");
+					}
+				})
+				//清空搜索输入框
 				document.getElementById("close").addEventListener("tap",function(){
 					$("#input").val("");
-					$("#close").css("display","none");
+					$("#close").hide();
+					$("#con_box").html("");
+					//将搜索历史 和 推荐词 显示
+					$(".guide,.history").show();
 				});
 				// 清空搜索历史
 				document.getElementById("claer").addEventListener("tap",function(){
-					alert(1);
+				//重置
 					$(".search_list").html("");
 					window.localStorage.clear();
+					arr = [];
+				})
+//				点击推荐词
+				$(".guide a").on("tap",function(){
+					var text = $(this).html();
+					$("#input").val(text);
+//					执行点击搜索事件 
+					mui.trigger(serch,"tap");
 				})
 			})
 		</script>
