@@ -206,7 +206,9 @@
 					"serch.html",
 					"shua.html",
 					"xxx.html",
-					"js/mui.js"
+					"js/mui.js",
+					"js/meta.js",
+					"js/jquery.min.js"
 				],
 				"refer": [],
 				"priority": 0
@@ -218,7 +220,10 @@
 					"css/mui.min.css",
 					"index.html",
 					"images/searh_bg.jpg",
-					"js/mui.js"
+					"js/mui.js",
+					"js/serch.js",
+					"css/serch.css",
+					"js/jquery.min.js"
 				],
 				"refer": [],
 				"priority": 0
@@ -227,7 +232,8 @@
 				"resources": [
 					"index.html",
 					"js/all.js",
-					"shua2.html"
+					"shua2.html",
+					"js/mui.min.js"
 				],
 				"refer": [],
 				"priority": 0

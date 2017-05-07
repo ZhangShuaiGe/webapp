@@ -5,4 +5,3 @@ var a = null;
     a += '<script src="../js/mui.min.js"></script>';
     a += '<script src="../js/shipei.js" type="text/javascript" charset="utf-8"></script>';
 document.getElementsByTagName("head")[0].innerHTML += a;
-//$("head").append(a);

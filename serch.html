@@ -7,194 +7,15 @@
 		<!-- mui js-->
 		<script src="js/mui.js"></script>
 	 	<!-- jq -->
-		<script src="http://libs.baidu.com/jquery/2.1.1/jquery.min.js"></script>
+		<!-- <script src="js/jquery.min.js"></script> -->
+		<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+
 		 <!-- mui css -->
 		<link href="css/mui.min.css" rel="stylesheet"/>
-		<script type="text/javascript">
-			mui.init();
-			mui.plusReady(function(){
-				var serch = document.getElementById("serch");
-				//初始化一个数组 用来 读取 本地 搜索记录
-				var arr = [];
-				function search(){
-		        	// 初始化 预防 重复叠加
-		        	arr = [];
-					//清空搜索列表  避免 重复添加
-					$(".search_list").html("");
-					//读取本地数据
-					var $storage = window.localStorage.getItem("data");
-					//有数据的情况下
-					if($storage != null){
-						//数组化本地数据
-						var g = JSON.parse($storage);
-				        for(var i = 0 ; i < g.length ; i++){
-	//将本地数据放入数组,如果输入内容会更新 数组 ，然后重新  将数组 存入 本地数据，更新本地数据		
-				            arr.push(g[i]);
-				            
-							var $dom = [
-									'<li>',
-									'	<img src="images/searh_bg.jpg" alt="" />',
-									'	<span>'+g[i]+'</span>',
-									'	<span class="mui-icon mui-icon-trash remove"></span>',
-									'</li>'
-							].join("");
-				            $(".search_list").append($dom);
-				        }
-					}
-				}
-				// 搜索记录列表展示
-				search();
-//				点击搜索
-				serch.addEventListener("tap",function(){
-//					将搜索历史 和 推荐词 隐藏
-					$(".guide,.history").hide();
-					var val = document.getElementById("input").value;
-//					更新数组
-					arr.push(val);
-//					将新数组 存入 本地   字符串化 数组
-					window.localStorage.setItem("data",JSON.stringify(arr));
-					// 搜索记录列表展示
-					search();
-					mui.ajax('http://baike.baidu.com/api/openapi/BaikeLemmaCardApi?scope=103&format=json&appid=379020&bk_key='+val+'&bk_length=600',{
-						dataType:'json',//服务器返回json格式数据
-						type:'get',//HTTP请求类型
-						timeout:10000,//超时时间设置为10秒；	              
-						success:function(data){
-							if(data["key"] == undefined || data["key"] == ''){
-								$("#con_box").append("抱歉~没有查询到相关内容");
-								return false;
-							}
-//							成功后清空 避免累计请求
-							$("#con_box").html("");
-							
-							$("#con_box").append("<p>查询：<span style='color:red'>"+data["key"]+"</span></p>");
-							$("#con_box").append("<p>简介：<span style='color:red'>"+data["abstract"]+"</span></p>");
-							$("#con_box").append("<p id='img_box'>图片：<img src='"+data["image"]+"'></span></p>");
-							$("#con_box").append("<p>声明：<span style='color:red'>"+data["copyrights"]+"</span></p>");
-						},
-						error:function(xhr,type,errorThrown){
-							//异常处理；
-							alert("请求错误");
-							console.log(type);
-							
-						}
-					});
-				})
-				$("#input").focus(function(){
-					$("#close").show();
-				})
-				$("#input").on("input propertychange",function(){
-					$("#close").show();
-//					输入框为空
-					if($("#input").val() == ""){
-						$("#close").hide();
-						$("#con_box").html("");
-					}
-				})
-				//清空搜索输入框
-				document.getElementById("close").addEventListener("tap",function(){
-					$("#input").val("");
-					$("#close").hide();
-					$("#con_box").html("");
-					//将搜索历史 和 推荐词 显示
-					$(".guide,.history").show();
-				});
-				// 清空搜索历史
-				document.getElementById("claer").addEventListener("tap",function(){
-				//重置
-					$(".search_list").html("");
-					window.localStorage.clear();
-					arr = [];
-				})
-//				点击推荐词
-				$(".guide a").on("tap",function(){
-					var text = $(this).html();
-					$("#input").val(text);
-//					执行点击搜索事件 
-					mui.trigger(serch,"tap");
-				})
-			})
-		</script>
-		<style type="text/css">
-			*{
-				margin:0;
-				padding: 0;
-			}
-			ul,li{
-				list-style: none;
-			}
-			.serch_btn{
-				margin:0 auto;
-				display: block;
-			}
-			#con_box{
-				padding:10px;
-			}
-			.serch_box{
-				margin:10px;
-				position: relative;
-			}
-			#img_box img{
-				width:100%;
-				height: auto;
-			}
-			#close{
-				position: absolute;
-				top:50px;
-				right: 10px;
-				font-size: 30px;
-				display: none;
-			}
-			.guide{
-				padding:0 15px;
-			}
-			.guide h3{
-				font-size: 16px;
-				margin:20px 0;
-			}
-			.guide a{
-				font-size: 14px;
-				background: #fff;
-				color:#000;
-				padding:10px;
-				border:1px solid #ccc;
-				border-radius: 5px;
-				display: inline-block;
-			}
-			.history h3{
-				font-size: 16px;
-				margin: 15px;
-			}
-			.history li{
-				border-top: 1px solid #ccc;
-				border-bottom: 0px solid #ccc;
-				background: #fff;
-				height: 40px;
-				line-height: 40px;
-				padding: 0 15px;
-			}
-			.history li:last-child{
-				border-bottom: 1px solid #ccc;
-			}
-			.history li img{
-				vertical-align: middle;
-				margin-right: 24px;
-				float: left;
-				margin-top: 6px;
-			}
-			.history .remove{
-				float: right;
-				margin-top: 8px;
-			}
-			.clear{
-				background: #fff;
-				height: 40px;
-				display: block;
-				line-height: 40px;
-				text-align: center;
-				font-size: 12px;
-			}
-		</style>
+		<!-- serch.css -->
+		<link rel="stylesheet" href="css/serch.css" />
+		<!-- serch.js -->
+		<script src="js/serch.js"></script>
 	</head>
 
 	<body>
@@ -206,18 +27,18 @@
 		
 		<div class="mui-content serch_box">
 			<input type="text" placeholder="请输入关键字" id="input"/>
-			<div id="serch" class="mui-btn mui-btn-primary serch_btn">
-					<span>搜索</span>
-			</div>
+			<botton id="serch" data-loading-icon="mui-spinner mui-spinner-custom" class="mui-btn mui-btn-primary serch_btn">
+					搜索
+			</botton>
 			<a id="close" href="javascript:;">x</a>
 		</div>
 		
 		<div class="guide">
 			<h3>大家都在搜</h3>
-			<a href="#">数学</a>
+			<a href="#">速度与激情8</a>
 			<a href="#">北京</a>
 			<a href="#">史泰龙</a>
-			<a href="#">皮皮虾</a>
+			<a href="#">人工智能</a>
 		</div>
 		
 		<div class="history">
@@ -225,7 +46,7 @@
 			<ul class="search_list">
 
 			</ul>
-			<a href="javascript:;" class="clear" id="claer">清空搜索历史</a>
+			<a href="javascript:;" class="clear" id="clear">清空搜索历史</a>
 		</div>
 		
 		<!--结果-->

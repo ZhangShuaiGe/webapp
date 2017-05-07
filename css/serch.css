@@ -1,0 +1,84 @@
+/* 
+* @Author: anchen
+* @Date:   2017-05-07 09:54:27
+* @Last Modified by:   anchen
+* @Last Modified time: 2017-05-07 10:23:15
+*/
+*{
+    margin:0;
+    padding: 0;
+}
+ul,li{
+    list-style: none;
+}
+.serch_btn{
+    margin:0 auto;
+    display: block;
+}
+#con_box{
+    padding:10px;
+}
+.serch_box{
+    margin:10px;
+    position: relative;
+}
+#img_box img{
+    width:100%;
+    height: auto;
+}
+#close{
+    position: absolute;
+    top:50px;
+    right: 10px;
+    font-size: 30px;
+    display: none;
+}
+.guide{
+    padding:0 15px;
+}
+.guide h3{
+    font-size: 16px;
+    margin:20px 0;
+}
+.guide a{
+    font-size: 14px;
+    background: #fff;
+    color:#000;
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius: 5px;
+    display: inline-block;
+}
+.history h3{
+    font-size: 16px;
+    margin: 15px;
+}
+.history li{
+    border-top: 1px solid #ccc;
+    border-bottom: 0px solid #ccc;
+    background: #fff;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 15px;
+}
+.history li:last-child{
+    border-bottom: 1px solid #ccc;
+}
+.history li img{
+    vertical-align: middle;
+    margin-right: 24px;
+    float: left;
+    margin-top: 6px;
+}
+.history .remove{
+    float: right;
+    margin-top: 8px;
+}
+.clear{
+    background: #fff;
+    height: 40px;
+    display: block;
+    line-height: 40px;
+    text-align: center;
+    font-size: 14px;
+}
