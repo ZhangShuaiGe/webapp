@@ -15,7 +15,13 @@
 			"xxx.html",
 			"js/mui.js",
 			"js/meta.js",
-			"js/jquery.min.js"
+			"js/jquery.min.js",
+			"fonts/iconfont.woff",
+			"fonts/iconfont.ttf",
+			"images/banner2.jpg",
+			"images/banner.jpg",
+			"images/banenr4.jpg",
+			"images/banner3.jpg"
 		],
 		"refer": [
 			"test.html",
