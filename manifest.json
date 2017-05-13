@@ -217,7 +217,9 @@
 					"images/banenr4.jpg",
 					"images/banner3.jpg"
 				],
-				"refer": [],
+				"refer": [
+					"origin.html"
+				],
 				"priority": 0
 			},
 			"serch.html": {
@@ -241,6 +243,15 @@
 					"js/all.js",
 					"shua2.html",
 					"js/mui.min.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"origin.html": {
+				"resources": [
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css"
 				],
 				"refer": [],
 				"priority": 0

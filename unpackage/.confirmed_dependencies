@@ -27,7 +27,8 @@
 			"test.html",
 			"serch.html",
 			"shua.html",
-			"xxx.html"
+			"xxx.html",
+			"origin.html"
 		]
 	},
 	"serch.html": {
@@ -56,6 +57,13 @@
 		"refer": [
 			"index.html",
 			"shua2.html"
+		]
+	},
+	"origin.html": {
+		"resources": [
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
 		]
 	}
 }

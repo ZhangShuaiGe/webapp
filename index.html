@@ -16,18 +16,28 @@
     <!-- index.css -->
    	<link rel="stylesheet" type="text/css" href="css/index.css"/>
    	<script type="text/javascript">
-   		mui.init();
+   		mui.init({
+		  //有远程页面,预加载，加载后无需等待
+		  preloadPages:[
+		    {
+		      url:'origin.html',
+		      id:'origin.html'
+		    }
+		  ],
+		  preloadLimit:5//预加载窗口数量限制(一旦超出,先进先出)默认不限制
+		});
    		mui.plusReady(function(){
    			// 封装tap 跳转事件 ，将跳转地址 放入 被点击的 title中
    			function tap($a){
    				for(var i = 0 ; i < $a.length ; i++){
    					$a[i].addEventListener("tap",function(){
    						var $html = this.getAttribute("title");
+   						mui.fire($html,"newsId",{name:123});
    						mui.openWindow({
    						    url:$html,
    						    id:$html,
    						    extras:{
-// 					      		name:'mui'  //扩展参数
+   					      		name:'mui'  //扩展参数
    						    },
    						    createNew:false,//是否重复创建同样id的webview，默认为false:不重复创建，直接显示
    						    show:{
@@ -63,7 +73,9 @@
 			var $srarch = document.getElementsByClassName("mui_srarch");
 			tap($srarch);
 			// 搜索点击跳转
-			
+			//固定栏 footer 点击
+			var $footer_a = $(".footer a");
+			tap($footer_a);
    		})
    	</script>
 </head>
@@ -225,10 +237,10 @@
 				<br/>
 				<span>首页</span>
 			</a>
-			<a href="javascript:;">
+			<a title="origin.html" href="javascript:;">
 				<span class="mui-icon mui-icon-chat"></span>
 				<br/>
-				<span>资料</span>
+				<span>远程页面</span>
 			</a>
 			<a href="javascript:;">
 				<span class="mui-icon mui-icon-chat"></span>
