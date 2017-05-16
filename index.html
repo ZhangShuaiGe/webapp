@@ -32,7 +32,6 @@
    				for(var i = 0 ; i < $a.length ; i++){
    					$a[i].addEventListener("tap",function(){
    						var $html = this.getAttribute("title");
-   						mui.fire($html,"newsId",{name:123});
    						mui.openWindow({
    						    url:$html,
    						    id:$html,
@@ -242,10 +241,10 @@
 				<br/>
 				<span>远程页面</span>
 			</a>
-			<a href="javascript:;">
+			<a titile="tab-webview-main.html" href="tab-webview-main.html">
 				<span class="mui-icon mui-icon-chat"></span>
 				<br/>
-				<span>资料</span>
+				<span>展示</span>
 			</a>
 			<a href="javascript:;">
 				<span class="mui-icon mui-icon-chat"></span>

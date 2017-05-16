@@ -1,12 +1,12 @@
 {
 	"@platforms": ["android", "iPhone", "iPad"],
 	"id": "H5E6761A2",/*应用的标识，创建应用时自动生成，勿手动修改*/
-	"name": "webapp",/*应用名称，程序桌面图标名称*/
+	"name": "张帅demo",/*应用名称，程序桌面图标名称*/
 	"version": {
 		"name": "1.0.0",/*应用版本名称*/
 		"code": "83"
 	},
-	"description": "",/*应用描述信息*/
+	"description": "张帅demo",/*应用描述信息*/
 	"icons": {
 		"72": "icon.png"
 	},
@@ -215,7 +215,8 @@
 					"images/banner2.jpg",
 					"images/banner.jpg",
 					"images/banenr4.jpg",
-					"images/banner3.jpg"
+					"images/banner3.jpg",
+					"tab-webview-main.html"
 				],
 				"refer": [
 					"origin.html"
@@ -254,6 +255,18 @@
 					"css/mui.min.css"
 				],
 				"refer": [],
+				"priority": 0
+			},
+			"tab-webview-main.html": {
+				"resources": [
+					"tab-webview-subpage-about.html",
+					"index.html"
+				],
+				"refer": [
+					"tab-webview-subpage-setting.html",
+					"tab-webview-subpage-chat.html",
+					"tab-webview-subpage-contact.html"
+				],
 				"priority": 0
 			}
 		},

@@ -21,14 +21,16 @@
 			"images/banner2.jpg",
 			"images/banner.jpg",
 			"images/banenr4.jpg",
-			"images/banner3.jpg"
+			"images/banner3.jpg",
+			"tab-webview-main.html"
 		],
 		"refer": [
 			"test.html",
 			"serch.html",
 			"shua.html",
 			"xxx.html",
-			"origin.html"
+			"origin.html",
+			"tab-webview-main.html"
 		]
 	},
 	"serch.html": {
@@ -64,6 +66,19 @@
 			"js/mui.min.js",
 			"fonts/mui.ttf",
 			"css/mui.min.css"
+		]
+	},
+	"tab-webview-main.html": {
+		"resources": [
+			"tab-webview-subpage-about.html",
+			"index.html"
+		],
+		"refer": [
+			"tab-webview-subpage-about.html",
+			"tab-webview-subpage-setting.html",
+			"tab-webview-subpage-chat.html",
+			"tab-webview-subpage-contact.html",
+			"index.html"
 		]
 	}
 }
